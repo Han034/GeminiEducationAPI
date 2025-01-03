@@ -1,16 +1,26 @@
 using GeminiEducationAPI.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
 using GeminiEducationAPI.Application;
-using static System.Net.Mime.MediaTypeNames;
 using GeminiEducationAPI.Domain.Repositories;
 using GeminiEducationAPI.Persistence.Repositories;
 using GeminiEducationAPI.Application.Mappings;
 using FluentValidation;
 using GeminiEducationAPI.Persistence.Interceptors;
+using GeminiEducationAPI.API.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+
+// Serilog konfigürasyonu
+builder.Host.UseSerilog((context, loggerConfig) =>
+{
+	loggerConfig
+		.ReadFrom.Configuration(context.Configuration)
+		.Enrich.FromLogContext()
+		.WriteTo.Console()
+		.WriteTo.Seq("http://localhost:5341"); // Seq sunucusunun adresi
+});
 
 // Register the MediatR services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GeminiEducationAPI.Application.AssemblyReference).Assembly));
@@ -35,6 +45,10 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); // Bu satýrýn mevcut oldu
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>(); // Middleware'i ekleyin.
+app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -54,3 +68,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+/*
+ builder.Host.UseSerilog(...): Serilog'u uygulamaya ekler ve yapýlandýrýr.
+ReadFrom.Configuration(context.Configuration): Serilog konfigürasyonunu appsettings.json dosyasýndan okur.
+Enrich.FromLogContext(): Log mesajlarýna context bilgilerini (örneðin, request bilgilerini) ekler.
+WriteTo.Console(): Log mesajlarýný konsola yazar.
+WriteTo.Seq("http://localhost:5341"): Log mesajlarýný belirtilen adresteki Seq sunucusuna gönderir. Seq varsayýlan olarak 5341 portunu kullanýr.
+app.UseSerilogRequestLogging(): Her HTTP request'i için otomatik olarak log kaydý oluþturur.
+ */

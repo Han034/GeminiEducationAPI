@@ -13,16 +13,25 @@ namespace GeminiEducationAPI.API.Controllers
 	public class ProductsController : Controller
 	{
 		private readonly IMediator _mediator;
+		private readonly ILogger<ProductsController> _logger;
 
-		public ProductsController(IMediator mediator)
+		public ProductsController(IMediator mediator, ILogger<ProductsController> logger)
 		{
 			_mediator = mediator;
+			_logger = logger;
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> CreateProduct(CreateProductCommand command)
 		{
+			// Bu satırı geçici olarak
+			//throw new Exception("Test error");
+			_logger.LogInformation("CreateProduct metodu çağrıldı. Data: {@command}", command); // Log satırı ekle
+
 			var productId = await _mediator.Send(command);
+
+			_logger.LogInformation("Product created successfully. ProductId: {ProductId}", productId); // Log satırı ekle
+
 			return Ok(productId);
 		}
 
@@ -83,4 +92,9 @@ DeleteProduct(int id): Bu action metodu, HTTP DELETE request'lerini karşılar v
 new DeleteProductCommand { Id = id }: Yeni bir DeleteProductCommand nesnesi oluşturur ve Id property'sini set eder.
 await _mediator.Send(command): DeleteProductCommand komutunu MediatR'a gönderir. MediatR, bu komutu DeleteProductCommandHandler'a yönlendirir.
 return Ok(): İşlemin başarılı olduğunu belirtmek için HTTP 200 (OK) status kodu döndürür.
+=======================================================================================================
+ILogger<ProductsController> _logger: ILogger arayüzünü dependency injection ile alıyoruz. ProductsController tipini belirttiğimiz için, log mesajlarında kaynak olarak ProductsController görünecektir.
+_logger.LogInformation(...): LogInformation metodu ile bilgi seviyesinde log kaydı oluşturuyoruz.
+"CreateProduct metodu çağrıldı. Data: {@command}": Log mesajı. @command ifadesi, command nesnesinin JSON formatında loglanmasını sağlar.
+"Product created successfully. ProductId: {ProductId}": Log mesajı. {ProductId} ifadesi, productId değişkeninin değerinin loglanmasını sağlar.
  */

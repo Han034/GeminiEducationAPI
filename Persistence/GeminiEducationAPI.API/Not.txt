@@ -7,3 +7,19 @@ Middleware (Ara Yazılımlar)
 Routing (Yönlendirme)
 Bağımlılıkları:
 ECommerceAPI.Application
+
+====================================================================================================
+Yapılandırılmış Loglama Nedir?
+
+Yapılandırılmış loglama, log mesajlarını sadece metin olarak değil, anahtar-değer çiftleri içeren bir formatta (genellikle JSON) kaydetme yöntemidir. Bu, logları analiz etmeyi ve filtrelemeyi çok daha kolay hale getirir.
+
+Neden Serilog ve Seq Kullanıyoruz?
+
+Serilog: .NET için popüler ve esnek bir yapılandırılmış loglama kütüphanesidir. Farklı hedeflere (sink) log yazmayı destekler.
+Seq: Yapılandırılmış logları toplamak, görüntülemek ve analiz etmek için kullanılan bir log sunucusudur. Kullanıcı dostu arayüzü ve güçlü arama/filtreleme özellikleri ile öne çıkar.
+Yapacağımız İşlemler:
+
+Serilog ve gerekli sink'leri (bu örnekte Seq) projemize ekleyeceğiz.
+Serilog'u Program.cs dosyasında yapılandıracağız.
+Uygulamamızda loglama yapacağız.
+Seq'i kurup çalıştıracağız ve logları görüntüleyeceğiz.

@@ -1,0 +1,14 @@
+﻿Neden Global Exception Handling Kullanmalıyız?
+
+Kod Tekrarını Önleme: Her controller'da veya serviste try-catch blokları yazmak yerine, hataları tek bir merkezi noktada yönetebiliriz.
+Daha Temiz Kod: Hata yönetimi mantığını iş mantığından ayırarak daha temiz ve okunabilir bir kod elde ederiz.
+Tutarlı Hata Yanıtları: Uygulamanın her yerinde tutarlı hata yanıtları döndürerek kullanıcı deneyimini iyileştirebiliriz.
+Daha Kolay Loglama ve İzleme: Hataları tek bir yerden loglayabilir ve izleyebiliriz.
+Yapacağımız İşlemler:
+
+Bu örnekte, aşağıdaki işlemleri gerçekleştireceğiz:
+
+Özel bir hata sınıfı (ErrorResponse) oluşturacağız.
+Bir middleware kullanarak hataları yakalayacak ve ErrorResponse nesnesine dönüştüreceğiz.
+Hataları loglayacağız. (İsteğe bağlı)
+Hata mesajlarını özelleştireceğiz.
