@@ -1,0 +1,11 @@
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\bin\Debug\net8.0\GeminiEducationAPI.Domain.deps.json
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\bin\Debug\net8.0\GeminiEducationAPI.Domain.dll
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\bin\Debug\net8.0\GeminiEducationAPI.Domain.pdb
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.AssemblyInfoInputs.cache
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.AssemblyInfo.cs
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.dll
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\refint\GeminiEducationAPI.Domain.dll
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\GeminiEducationAPI.Domain.pdb
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Core\GeminiEducationAPI.Domain\obj\Debug\net8.0\ref\GeminiEducationAPI.Domain.dll

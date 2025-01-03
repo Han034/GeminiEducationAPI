@@ -1,0 +1,20 @@
+﻿Features: Uygulamanın özelliklerini (features) içeren klasör. Her özellik, kendi alt klasöründe yer alacak.
+Products: Product entity'si ile ilgili işlemleri içeren özellik klasörü.
+Commands: Yazma işlemleri (create, update, delete) için command nesnelerini ve handler'larını içeren klasör.
+Queries: Okuma işlemleri (get all, get by id) için query nesnelerini ve handler'larını içeren klasör.
+Bu yapı, her komut ve sorgu için ayrı bir klasör oluşturarak kodun daha organize olmasını sağlar.
+
+
+=======================================================================================================
+Tracking Nedir?
+
+Entity Framework Core, veritabanından sorgulanan nesneleri varsayılan olarak izler (track eder). Bu, sorgu sonucunda elde edilen nesneler üzerinde yapılan değişikliklerin takip edildiği ve SaveChanges() veya SaveChangesAsync() metodu çağrıldığında bu değişikliklerin veritabanına yansıtıldığı anlamına gelir.
+
+Tracking'in Performans Üzerindeki Etkisi:
+
+İzleme (tracking), nesneler üzerinde değişiklik yapmayı kolaylaştırır, ancak ek bir yük getirir. Her nesnenin bir kopyasının bellekte tutulması ve değişikliklerin izlenmesi, özellikle büyük veri kümeleriyle çalışırken performansı olumsuz etkileyebilir.
+
+Tracking'i Devre Dışı Bırakma (AsNoTracking):
+
+Sorgu sonucunda elde edilen nesneler üzerinde herhangi bir değişiklik yapmayacaksanız (örneğin, sadece verileri okuyup ekranda gösterecekseniz), tracking'i devre dışı bırakarak performansı artırabilirsiniz. Bunu, AsNoTracking() metodunu kullanarak yapabilirsiniz.
+

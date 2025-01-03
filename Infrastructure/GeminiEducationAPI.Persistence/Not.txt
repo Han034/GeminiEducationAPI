@@ -1,0 +1,10 @@
+﻿Bu katman, veritabanı ile olan etkileşimi yönetir.
+Entity Framework Core gibi ORM (Object-Relational Mapping) araçları bu katmanda kullanılır.
+İçerebilecekler:
+DbContext sınıfı
+Entity Configuration'ları (Entity Type Configurations)
+Repository Implementations (Depo Uygulamaları)
+Migrations (Veritabanı geçişleri)
+Bağımlılıkları:
+ECommerceAPI.Application (sadece arayüzler için)
+ECommerceAPI.Domain

@@ -1,0 +1,4 @@
+﻿CreateProductCommand: Bu sınıf, yeni bir Product oluşturmak için gerekli bilgileri içeren bir command'dir. IRequest<int> arayüzünden türediği için, bu command'in int tipinde bir değer döndüreceğini belirtir (bu örnekte, yeni oluşturulan ürünün Id'si).
+CreateProductCommandHandler: Bu sınıf, CreateProductCommand'i işleyen handler'dır. IRequestHandler<CreateProductCommand, int> arayüzünden türediği için, CreateProductCommand tipindeki command'leri işleyebileceğini ve int tipinde bir değer döndüreceğini belirtir.
+_productRepository: Product entity'si için repository arayüzü. Dependency injection ile constructor'da enjekte edilir. (Henüz IProductRepository'i oluşturmadık, bir sonraki adımda oluşturacağız).
+Handle: Bu metot, CreateProductCommand geldiğinde çalıştırılır. Yeni bir Product nesnesi oluşturur, repository'i kullanarak veritabanına kaydeder ve yeni ürünün Id'sini döndürür.

@@ -1,0 +1,2 @@
+﻿IUnitOfWork: Bu arayüz, IDisposable arayüzünden türemiştir. IDisposable arayüzü, yönetilmeyen kaynakları serbest bırakmak için kullanılır.
+SaveChangesAsync(): Bu metot, değişiklikleri asenkron olarak veritabanına kaydetmek için kullanılır.

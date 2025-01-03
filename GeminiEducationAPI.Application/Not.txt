@@ -1,0 +1,9 @@
+﻿Uygulama katmanı, Domain katmanındaki iş mantığını ve Infrastructure katmanındaki altyapı hizmetlerini (veritabanı erişimi, e-posta gönderme vb.) kullanarak uygulama servislerini (application services) sağlar.
+İçerebilecekler:
+Application Services (Uygulama Servisleri) - İş akışlarını yönetir.
+DTOs (Data Transfer Objects) - Katmanlar arası veri transferi için kullanılan nesneler.
+Interfaces (Arayüzler) - Dış bağımlılıklar için arayüzler tanımlar (örneğin, e-posta servisi arayüzü).
+CQRS (Command Query Responsibility Segregation) için Command ve Query nesneleri ve handler'ları.
+Mapping profiles (Eşleme profilleri) - AutoMapper gibi kütüphaneler için.
+Bağımlılıkları:
+ECommerceAPI.Domain

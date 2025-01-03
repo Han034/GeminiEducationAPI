@@ -1,0 +1,6 @@
+@GeminiEducationAPI.API_HostAddress = http://localhost:5130
+
+GET {{GeminiEducationAPI.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

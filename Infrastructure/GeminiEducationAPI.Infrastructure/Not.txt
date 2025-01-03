@@ -1,0 +1,11 @@
+﻿Bu katman, dış sistemlerle ve teknolojilerle olan etkileşimleri içerir.
+İçerebilecekler:
+E-posta gönderimi
+SMS gönderimi
+Dış API entegrasyonları
+Dosya işlemleri
+Önbellekleme (Caching)
+Kimlik doğrulama (Authentication) ve yetkilendirme (Authorization) uygulamaları
+Bağımlılıkları:
+ECommerceAPI.Application (sadece arayüzler için)
+ECommerceAPI.Domain

@@ -1,0 +1,10 @@
+﻿Bu katman, iş mantığının merkezinde yer alan ve iş kurallarını, varlıkları (entities) ve değer nesnelerini (value objects) içeren katmandır.
+Herhangi bir dış bağımlılığı olmamalıdır.
+Bu katman, diğer tüm katmanlar tarafından referans alınabilir.
+İçerebilecekler:
+Entities (Varlıklar)
+Value Objects (Değer Nesneleri)
+Domain Events (Alan Olayları)
+Domain Exceptions (Alan İstisnaları)
+Domain Services (Alan Servisleri - karmaşık iş kuralları için)
+Repositories Interfaces (Depo Arayüzleri) - Veritabanı işlemlerinin soyutlanması için. Veritabanı teknolojisinden bağımsız olmalı.

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\GeminiEducationAPI.API.props" />
+</Project>

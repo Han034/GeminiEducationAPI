@@ -1,0 +1,9 @@
+﻿Bu katman, kullanıcı arayüzüne en yakın katmandır ve API'nin dış dünyaya açılan kapısıdır.
+İçerebilecekler:
+Controllers (Denetleyiciler)
+Action Results (Eylem Sonuçları)
+Filters (Filtreler)
+Middleware (Ara Yazılımlar)
+Routing (Yönlendirme)
+Bağımlılıkları:
+ECommerceAPI.Application
