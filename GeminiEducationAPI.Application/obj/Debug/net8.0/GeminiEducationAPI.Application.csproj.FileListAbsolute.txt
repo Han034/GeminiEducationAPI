@@ -13,3 +13,4 @@ C:\Users\gezeg\source\repos\GeminiEducationAPI\GeminiEducationAPI.Application\ob
 C:\Users\gezeg\source\repos\GeminiEducationAPI\GeminiEducationAPI.Application\obj\Debug\net8.0\refint\GeminiEducationAPI.Application.dll
 C:\Users\gezeg\source\repos\GeminiEducationAPI\GeminiEducationAPI.Application\obj\Debug\net8.0\GeminiEducationAPI.Application.pdb
 C:\Users\gezeg\source\repos\GeminiEducationAPI\GeminiEducationAPI.Application\obj\Debug\net8.0\ref\GeminiEducationAPI.Application.dll
+C:\Users\gezeg\source\repos\GeminiEducationAPI\GeminiEducationAPI.Application\obj\Debug\net8.0\GeminiEducationAPI.Application.sourcelink.json

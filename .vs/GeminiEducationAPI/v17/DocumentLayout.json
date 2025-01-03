@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CB7E1632-6A27-4DBD-BBCA-B1854DD4670E}|Persistence\\GeminiEducationAPI.API\\GeminiEducationAPI.API.csproj|c:\\users\\gezeg\\source\\repos\\geminieducationapi\\persistence\\geminieducationapi.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB7E1632-6A27-4DBD-BBCA-B1854DD4670E}|Persistence\\GeminiEducationAPI.API\\GeminiEducationAPI.API.csproj|solutionrelative:persistence\\geminieducationapi.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|c:\\users\\gezeg\\source\\repos\\geminieducationapi\\infrastructure\\geminieducationapi.persistence\\contexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|solutionrelative:infrastructure\\geminieducationapi.persistence\\contexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|c:\\users\\gezeg\\source\\repos\\geminieducationapi\\infrastructure\\geminieducationapi.persistence\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|solutionrelative:infrastructure\\geminieducationapi.persistence\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|c:\\users\\gezeg\\source\\repos\\geminieducationapi\\infrastructure\\geminieducationapi.persistence\\interceptors\\not.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{47670865-B63F-40B0-9FB0-2404126A1460}|Infrastructure\\GeminiEducationAPI.Persistence\\GeminiEducationAPI.Persistence.csproj|solutionrelative:infrastructure\\geminieducationapi.persistence\\interceptors\\not.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D45950C7-051B-481E-9F0A-6A68698BA408}|GeminiEducationAPI.Application\\GeminiEducationAPI.Application.csproj|c:\\users\\gezeg\\source\\repos\\geminieducationapi\\geminieducationapi.application\\features\\not.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D45950C7-051B-481E-9F0A-6A68698BA408}|GeminiEducationAPI.Application\\GeminiEducationAPI.Application.csproj|solutionrelative:geminieducationapi.application\\features\\not.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -75,25 +91,77 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Persistence\\GeminiEducationAPI.API\\Program.cs",
+              "RelativeDocumentMoniker": "Persistence\\GeminiEducationAPI.API\\Program.cs",
+              "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Persistence\\GeminiEducationAPI.API\\Program.cs",
+              "RelativeToolTip": "Persistence\\GeminiEducationAPI.API\\Program.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T20:33:52.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuditableEntityInterceptor.cs",
+              "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
+              "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
+              "RelativeToolTip": "Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T20:30:02.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Not.txt",
+              "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\Not.txt",
+              "RelativeDocumentMoniker": "Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\Not.txt",
+              "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\Not.txt",
+              "RelativeToolTip": "Infrastructure\\GeminiEducationAPI.Persistence\\Interceptors\\Not.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwAkAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-01-03T20:29:35.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\GeminiEducationAPI.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\Infrastructure\\GeminiEducationAPI.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\GeminiEducationAPI.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwCsAAACtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T20:27:15.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Not.txt",
               "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\GeminiEducationAPI.Application\\Features\\Not.txt",
               "RelativeDocumentMoniker": "GeminiEducationAPI.Application\\Features\\Not.txt",
               "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\GeminiEducationAPI.Application\\Features\\Not.txt",
               "RelativeToolTip": "GeminiEducationAPI.Application\\Features\\Not.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowBMAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-01-03T20:08:18.48Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "GetAllProductsQueryHandler.cs",
               "DocumentMoniker": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\GeminiEducationAPI.Application\\Features\\Products\\Quaries\\GetAllProducts\\GetAllProductsQueryHandler.cs",
               "RelativeDocumentMoniker": "GeminiEducationAPI.Application\\Features\\Products\\Quaries\\GetAllProducts\\GetAllProductsQueryHandler.cs",
               "ToolTip": "C:\\Users\\gezeg\\source\\repos\\GeminiEducationAPI\\GeminiEducationAPI.Application\\Features\\Products\\Quaries\\GetAllProducts\\GetAllProductsQueryHandler.cs",
               "RelativeToolTip": "GeminiEducationAPI.Application\\Features\\Products\\Quaries\\GetAllProducts\\GetAllProductsQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T20:07:40.946Z",
               "EditorCaption": ""

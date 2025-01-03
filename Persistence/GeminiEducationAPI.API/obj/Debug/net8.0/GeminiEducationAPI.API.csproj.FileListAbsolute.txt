@@ -177,3 +177,4 @@ C:\Users\gezeg\source\repos\GeminiEducationAPI\Persistence\GeminiEducationAPI.AP
 C:\Users\gezeg\source\repos\GeminiEducationAPI\Persistence\GeminiEducationAPI.API\obj\Debug\net8.0\ref\GeminiEducationAPI.API.dll
 C:\Users\gezeg\source\repos\GeminiEducationAPI\Persistence\GeminiEducationAPI.API\obj\Debug\net8.0\GeminiEducationAPI.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gezeg\source\repos\GeminiEducationAPI\Persistence\GeminiEducationAPI.API\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\gezeg\source\repos\GeminiEducationAPI\Persistence\GeminiEducationAPI.API\obj\Debug\net8.0\GeminiEducationAPI.API.sourcelink.json
