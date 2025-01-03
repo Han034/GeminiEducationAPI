@@ -1,0 +1,14 @@
+.vs/*
+GeminiEducationAPI.Application/bin/*
+GeminiEducationAPI.Application/obj/*
+
+GeminiEducationAPI/bin/*
+GeminiEducationAPI/obj/*
+
+Infrastructure/GeminiEducationAPI.Infrastructure/bin/*
+Infrastructure/GeminiEducationAPI.Infrastructure/obj/*
+Infrastructure/GeminiEducationAPI.Persistence/bin/*
+Infrastructure/GeminiEducationAPI.Persistence/obj/*
+Persistence/GeminiEducationAPI.API/bin/*
+Persistence/GeminiEducationAPI.API/obj/*
+

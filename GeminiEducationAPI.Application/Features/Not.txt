@@ -17,4 +17,18 @@ Tracking'in Performans Üzerindeki Etkisi:
 Tracking'i Devre Dışı Bırakma (AsNoTracking):
 
 Sorgu sonucunda elde edilen nesneler üzerinde herhangi bir değişiklik yapmayacaksanız (örneğin, sadece verileri okuyup ekranda gösterecekseniz), tracking'i devre dışı bırakarak performansı artırabilirsiniz. Bunu, AsNoTracking() metodunu kullanarak yapabilirsiniz.
+=======================================================================================================
 
+Ne Zaman AsNoTracking Kullanılmalı?
+
+Sadece veri okuma işlemleri yapıyorsanız ve sorgu sonucunda elde edilen nesneler üzerinde herhangi bir değişiklik yapmayacaksanız.
+Büyük veri kümeleriyle çalışıyorsanız ve performans önemliyse.
+Salt okunur (read-only) DTO'lar (Data Transfer Objects) kullanıyorsanız.
+Ne Zaman AsNoTracking Kullanılmamalı?
+
+Sorgu sonucunda elde edilen nesneler üzerinde değişiklik yapmanız ve bu değişiklikleri veritabanına kaydetmeniz gerekiyorsa.
+Nesneler arası ilişkileri (relationships) yüklemeniz gerekiyorsa (örneğin, Include() metodu kullanıyorsanız).
+Diğer Tracking Seçenekleri:
+
+AsNoTrackingWithIdentityResolution(): Bu metot, nesneleri izlemez, ancak aynı nesnenin birden fazla kez yüklenmesi durumunda (örneğin, ilişkili verileri yüklerken), her seferinde yeni bir nesne oluşturmak yerine, bellekteki mevcut nesneyi kullanır. Bu, bellek kullanımını azaltmaya ve performansı artırmaya yardımcı olabilir.
+AsTracking(): Bu metot, varsayılan davranışı açıkça belirtmek için kullanılır. Sorgu sonucunda elde edilen nesneler izlenir.

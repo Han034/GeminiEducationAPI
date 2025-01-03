@@ -1,0 +1,10 @@
+﻿Interceptor Nedir?
+
+Interceptor'lar, Entity Framework Core'un veritabanı işlemleri sırasında araya girerek belirli noktalarda ek kod çalıştırmanıza olanak tanıyan yapılardır. Bu sayede, her seferinde aynı kodu yazmak zorunda kalmadan, veritabanı işlemleriyle ilgili genel mantığı tek bir yerden yönetebilirsiniz.
+
+Yapacağımız İşlemler:
+
+Bu örnekte, aşağıdaki işlemleri otomatik olarak gerçekleştirmek için bir interceptor kullanacağız:
+
+Yeni bir entity eklendiğinde, CreatedDate özelliğini otomatik olarak doldurma.
+Mevcut bir entity güncellendiğinde, UpdatedDate özelliğini otomatik olarak doldurma.

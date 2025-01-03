@@ -7,6 +7,7 @@ using GeminiEducationAPI.Domain.Repositories;
 using GeminiEducationAPI.Persistence.Repositories;
 using GeminiEducationAPI.Application.Mappings;
 using FluentValidation;
+using GeminiEducationAPI.Persistence.Interceptors;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -19,6 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddValidatorsFromAssembly(typeof(AssemblyReference).Assembly); // Application.AssemblyReference -> AssemblyReference
+builder.Services.AddScoped<AuditableEntityInterceptor>();
+
 
 
 
