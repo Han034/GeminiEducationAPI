@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR Test</title>
+</head>
+<body>
+    <h1>New Product Notifications</h1>
+    <ul id="notifications"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/productHub")
+            .build();
+
+        connection.on("ReceiveNewProductNotification", (message) => {
+            const li = document.createElement("li");
+            li.textContent = message;
+            document.getElementById("notifications").appendChild(li);
+        });
+
+        connection.start().catch(err => console.error(err.toString()));</script>
+</body>
+</html>
+
+<!--signalr.min.js: SignalR JavaScript istemci kütüphanesini CDN üzerinden ekler.
+new signalR.HubConnectionBuilder().withUrl("/productHub").build(): /productHub URL'sine bağlanan bir HubConnection nesnesi oluşturur.
+connection.on("ReceiveNewProductNotification", ...): ReceiveNewProductNotification mesajını dinler ve mesaj geldiğinde ekrana bir li elementi ekler.
+connection.start(): Hub bağlantısını başlatır.
+    =>http://localhost:<port>/index.html
+    -->

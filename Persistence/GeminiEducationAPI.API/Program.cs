@@ -8,6 +8,8 @@ using FluentValidation;
 using GeminiEducationAPI.Persistence.Interceptors;
 using GeminiEducationAPI.API.Middleware;
 using Serilog;
+using GeminiEducationAPI.API.Hubs;
+using GeminiEducationAPI.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -31,6 +33,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddValidatorsFromAssembly(typeof(AssemblyReference).Assembly); // Application.AssemblyReference -> AssemblyReference
 builder.Services.AddScoped<AuditableEntityInterceptor>();
+builder.Services.AddSignalR(); // SignalR'ý ekle
+builder.Services.AddScoped<IProductHubContext, ProductHubContext>();
 
 
 
@@ -47,7 +51,7 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>(); // Middleware'i ekleyin.
 app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
-
+app.MapHub<ProductHub>("/productHub"); // SignalR Hub'ýný belirli bir URL'ye map'le
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -7,3 +7,19 @@ CQRS (Command Query Responsibility Segregation) için Command ve Query nesneleri
 Mapping profiles (Eşleme profilleri) - AutoMapper gibi kütüphaneler için.
 Bağımlılıkları:
 ECommerceAPI.Domain
+
+================================================================================================
+
+Evet, prensip olarak, alt katmanlardan üst katmanlardaki bir sınıfa erişmeniz gerektiğinde benzer bir soyutlama (abstraction) mekanizması kullanmanız gerekecek. Yani, Application katmanından API katmanındaki bir sınıfa doğrudan erişmek yerine, bir arayüz (interface) tanımlayıp, bu arayüzü Application katmanında kullanıp, API katmanında da bu arayüzü uygulayan bir sınıf oluşturmanız gerekecek.
+
+Bu yöntem, Dependency Inversion Principle (DIP) olarak da bilinir ve SOLID prensiplerinin önemli bir parçasıdır. DIP, yüksek seviyeli modüllerin düşük seviyeli modüllere doğrudan bağımlı olmaması gerektiğini, her ikisinin de soyutlamalara bağımlı olması gerektiğini savunur.
+
+Örnek:
+
+Diyelim ki Application katmanından Infrastructure katmanındaki bir e-posta servisine erişmeniz gerekiyor. Bu durumda da:
+
+Application katmanında IEmailService adında bir arayüz tanımlayacaksınız.
+Infrastructure katmanında EmailService adında, IEmailService arayüzünü uygulayan bir sınıf oluşturacaksınız.
+Application katmanında IEmailService arayüzünü kullanacaksınız.
+Program.cs dosyasında IEmailService için EmailService sınıfını register edeceksiniz.
+Bu sayede, Application katmanı Infrastructure katmanına doğrudan bağımlı olmayacak, sadece soyut bir arayüze bağımlı olacak.

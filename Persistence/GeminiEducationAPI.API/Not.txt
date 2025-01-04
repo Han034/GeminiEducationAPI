@@ -23,3 +23,18 @@ Serilog ve gerekli sink'leri (bu örnekte Seq) projemize ekleyeceğiz.
 Serilog'u Program.cs dosyasında yapılandıracağız.
 Uygulamamızda loglama yapacağız.
 Seq'i kurup çalıştıracağız ve logları görüntüleyeceğiz.
+
+====================================================================================================
+
+
+Adım 14: SignalR ile Real-Time Haberleşme
+
+Bu adımda, uygulamamıza SignalR kütüphanesini kullanarak gerçek zamanlı (real-time) iletişim yetenekleri ekleyeceğiz.
+
+SignalR Nedir?
+
+SignalR, ASP.NET Core uygulamalarına gerçek zamanlı web işlevselliği eklemeyi kolaylaştıran bir kütüphanedir. Sunucu tarafındaki kodun istemcilere anında içerik göndermesine (push) olanak tanır.
+
+Ne İçin Kullanacağız?
+
+Bu örnekte, yeni bir ürün eklendiğinde, diğer bağlı istemcilerin (örneğin, web tarayıcılarının) anında bilgilendirilmesi için SignalR'ı kullanacağız. Bu sayede,
