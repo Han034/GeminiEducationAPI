@@ -4,13 +4,15 @@ using GeminiEducationAPI.Application.Features.Products.Commands.UpdateProduct;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetAllProducts;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetProductById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeminiEducationAPI.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ProductsController : Controller
+	//[Authorize]
+	public class ProductsController : ControllerBase
 	{
 		private readonly IMediator _mediator;
 		private readonly ILogger<ProductsController> _logger;
@@ -24,13 +26,11 @@ namespace GeminiEducationAPI.API.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateProduct(CreateProductCommand command)
 		{
-			// Bu satırı geçici olarak
-			//throw new Exception("Test error");
-			_logger.LogInformation("CreateProduct metodu çağrıldı. Data: {@command}", command); // Log satırı ekle
+			_logger.LogInformation("CreateProduct metodu çağrıldı. Data: {@command}", command);
 
 			var productId = await _mediator.Send(command);
 
-			_logger.LogInformation("Product created successfully. ProductId: {ProductId}", productId); // Log satırı ekle
+			_logger.LogInformation("Product created successfully. ProductId: {ProductId}", productId);
 
 			return Ok(productId);
 		}
@@ -59,6 +59,7 @@ namespace GeminiEducationAPI.API.Controllers
 		}
 
 		[HttpDelete("{id}")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> DeleteProduct(int id)
 		{
 			var command = new DeleteProductCommand { Id = id };

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GeminiEducationAPI.API.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("Account")]
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
@@ -16,15 +16,16 @@ namespace GeminiEducationAPI.API.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public async Task<IActionResult> Login(LoginUserCommand command)
+		public async Task<IActionResult> Login([FromQuery] string? returnUrl, [FromBody] LoginUserCommand command)
 		{
 			var result = await _mediator.Send(command);
+
+			if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+			{
+				return Redirect(returnUrl);
+			}
+
 			return Ok(result);
 		}
 	}
 }
-/*
- AuthController: Kimlik doğrulama (authentication) işlemlerini yönetmek için oluşturduğumuz controller sınıfı.
-Login: Kullanıcı girişi için oluşturduğumuz action metodu. LoginUserCommand nesnesini parametre olarak alır ve geriye IActionResult döndürür.
-_mediator.Send(command): LoginUserCommand'i MediatR'a gönderir
- */

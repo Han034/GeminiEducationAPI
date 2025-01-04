@@ -1,9 +1,13 @@
 ﻿using GeminiEducationAPI.Domain.Entities;
-using GeminiEducationAPI.Domain;
+using GeminiEducationAPI.Domain.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+using System.Threading.Tasks;
 
 namespace GeminiEducationAPI.Infrastructure.Token
 {
@@ -41,19 +45,3 @@ namespace GeminiEducationAPI.Infrastructure.Token
 		}
 	}
 }
-/*
- ITokenGenerator: Bu interface, token üretmek için kullanılacak metodun imzasını tanımlar.
-TokenGenerator: ITokenGenerator arayüzünü uygulayan bu sınıf, JWT token üretme işlemini gerçekleştirir.
-_tokenOptions: ITokenOptions nesnesini dependency injection ile alır. Bu nesne, appsettings.json dosyasındaki token ayarlarını içerir.
-GenerateToken(AppUser user): Bu metot, parametre olarak aldığı AppUser nesnesindeki bilgileri kullanarak bir JWT token oluşturur ve string olarak döndürür.
-claims: Token'a eklenecek claim'leri (kullanıcı bilgileri) tanımlar. Bu örnekte, NameIdentifier (kullanıcı ID'si), Name (kullanıcı adı) ve Email claim'leri eklenmiştir.
-key: Token'ı imzalamak için kullanılacak gizli anahtarı oluşturur.
-creds: İmzalama bilgilerini (kimlik bilgileri) oluşturur.
-token: JWT token nesnesini oluşturur.
-Issuer: Token'ı veren taraf.
-Audience: Token'ın hedef kitlesi.
-claims: Token'a eklenecek claim'ler.
-expires: Token'ın geçerlilik süresinin bitiş tarihi.
-signingCredentials: İmzalama bilgileri.
-new JwtSecurityTokenHandler().WriteToken(token): Token'ı string formatına çevirerek döndürür.
- */

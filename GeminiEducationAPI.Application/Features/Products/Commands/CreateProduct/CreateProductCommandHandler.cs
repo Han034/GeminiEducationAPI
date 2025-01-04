@@ -1,5 +1,4 @@
-﻿using GeminiEducationAPI.Application.Interfaces;
-using GeminiEducationAPI.Domain.Entities;
+﻿using GeminiEducationAPI.Domain.Entities;
 using GeminiEducationAPI.Domain.Repositories;
 using MediatR;
 
@@ -9,13 +8,12 @@ namespace GeminiEducationAPI.Application.Features.Products.Commands.CreateProduc
 	{
 		private readonly IProductRepository _productRepository;
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IProductHubContext _productHubContext;
 
-		public CreateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductHubContext productHubContext)
+
+		public CreateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
 		{
 			_productRepository = productRepository;
 			_unitOfWork = unitOfWork;
-			_productHubContext = productHubContext;
 		}
 
 		public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -30,8 +28,6 @@ namespace GeminiEducationAPI.Application.Features.Products.Commands.CreateProduc
 
 			await _productRepository.AddAsync(product);
 			await _unitOfWork.SaveChangesAsync();
-			await _productHubContext.SendNewProductNotification($"New product added with Id: {product.Id}");
-
 			return product.Id;
 		}
 	}

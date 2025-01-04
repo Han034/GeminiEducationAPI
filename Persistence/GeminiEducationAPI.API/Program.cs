@@ -4,17 +4,18 @@ using GeminiEducationAPI.Application;
 using GeminiEducationAPI.Domain.Repositories;
 using GeminiEducationAPI.Persistence.Repositories;
 using GeminiEducationAPI.Application.Mappings;
-using FluentValidation;
 using GeminiEducationAPI.Persistence.Interceptors;
-using GeminiEducationAPI.API.Middleware;
 using Serilog;
-using GeminiEducationAPI.API.Hubs;
-using GeminiEducationAPI.Application.Interfaces;
 using GeminiEducationAPI.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using GeminiEducationAPI.Persistence.Data;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using GeminiEducationAPI.API.Extensions;
 using GeminiEducationAPI.Infrastructure.Token;
+using FluentValidation;
+using GeminiEducationAPI.API.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -36,18 +37,25 @@ builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 
 // Register the MediatR services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GeminiEducationAPI.Application.AssemblyReference).Assembly));
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen(c =>
+//{
+//	c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+//	c.EnableAnnotations(); // Ek açýklamalarýný etkinleþtir
+
+//	// XML Dokümantasyon dosyasýnýn yolunu belirtin
+//	var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+//	var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+//	c.IncludeXmlComments(xmlPath);
+//});
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddValidatorsFromAssembly(typeof(AssemblyReference).Assembly); // Application.AssemblyReference -> AssemblyReference
+
+
 builder.Services.AddScoped<AuditableEntityInterceptor>();
-builder.Services.AddSignalR(); // SignalR'ý ekle
-builder.Services.AddScoped<IProductHubContext, ProductHubContext>();
-
-
-
 
 // Veritabaný baðlantýsý için gerekli ekleme:
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -65,11 +73,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 	//AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
 	//AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
 
-var app = builder.Build();
+// Swagger Services
+builder.Services.AddSwaggerServices();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>(); // Middleware'i ekleyin.
-app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
-app.MapHub<ProductHub>("/productHub"); // SignalR Hub'ýný belirli bir URL'ye map'le
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -85,14 +92,19 @@ using (var scope = app.Services.CreateScope())
 	await SeedData.InitializeAsync(serviceProvider);
 }
 
+app.UseHttpsRedirection();
+
+app.UseRouting(); // Önce Routing
+
 app.UseCors(builder => builder
 	.AllowAnyOrigin()
 	.AllowAnyMethod()
 	.AllowAnyHeader());
 
-app.UseHttpsRedirection();
+app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
 
-app.UseAuthorization();
+app.UseAuthentication(); // Sonra Authentication
+app.UseAuthorization(); // Sonra Authorization
 
 app.MapControllers();
 

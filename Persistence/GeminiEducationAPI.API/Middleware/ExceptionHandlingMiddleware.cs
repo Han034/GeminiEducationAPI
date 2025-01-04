@@ -33,25 +33,12 @@ namespace GeminiEducationAPI.API.Middleware
 			var errorResponse = new ErrorResponse
 			{
 				StatusCode = response.StatusCode,
-				Message = "Internal Server Error."
+				Message = "Internal Server Error." // Varsayılan bir mesaj
 			};
 
-			switch (exception)
-			{
-				case ApplicationException ex:
-					if (ex.Message.Contains("Invalid Token"))
-					{
-						response.StatusCode = (int)HttpStatusCode.Forbidden;
-						errorResponse.Message = ex.Message;
-						break;
-					}
-					response.StatusCode = (int)HttpStatusCode.BadRequest;
-					errorResponse.Message = ex.Message;
-					break;
-				default:
-					response.StatusCode = (int)HttpStatusCode.InternalServerError;
-					break;
-			}
+			// Burada sadece log'a yazıyoruz, özel bir durum (örneğin, ApplicationException) kontrolü yok.
+			response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
 			var result = JsonSerializer.Serialize(errorResponse);
 			await context.Response.WriteAsync(result);
 		}
