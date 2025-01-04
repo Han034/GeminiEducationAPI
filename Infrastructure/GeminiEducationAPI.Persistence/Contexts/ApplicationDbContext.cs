@@ -11,7 +11,8 @@ namespace GeminiEducationAPI.Persistence.Contexts
 
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, AuditableEntityInterceptor auditableEntityInterceptor) : base(options)
 		{
-			ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; // Varsayılan davranışı NoTracking olarak ayarlar.
+			ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; 
+			// Varsayılan davranışı NoTracking olarak ayarlar.
 			_auditableEntityInterceptor = auditableEntityInterceptor;
 			//			QueryTrackingBehavior.NoTracking: Varsayılan olarak hiçbir nesneyi izlemez.
 			//			QueryTrackingBehavior.TrackAll: Varsayılan olarak tüm nesneleri izler.
@@ -19,6 +20,7 @@ namespace GeminiEducationAPI.Persistence.Contexts
 
 		// DbSet'ler buraya eklenecek (Örnek: public DbSet<Product> Products { get; set; } )
 		public DbSet<Product> Products { get; set; }
+		public DbSet<AppSetting> AppSettings { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);

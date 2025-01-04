@@ -37,4 +37,26 @@ SignalR, ASP.NET Core uygulamalarına gerçek zamanlı web işlevselliği ekleme
 
 Ne İçin Kullanacağız?
 
-Bu örnekte, yeni bir ürün eklendiğinde, diğer bağlı istemcilerin (örneğin, web tarayıcılarının) anında bilgilendirilmesi için SignalR'ı kullanacağız. Bu sayede,
+Bu örnekte, yeni bir ürün eklendiğinde, diğer bağlı istemcilerin (örneğin, web tarayıcılarının) anında bilgilendirilmesi için SignalR'ı kullanacağız. Bu sayede
+
+====================================================================================================
+
+#       docker-compose.yml Açıklaması:
+
+# version: '3.4': Docker Compose dosya formatının versiyonunu belirtir.
+# services: Çalıştırılacak servisleri tanımlar.
+# geminieducationapi.api: API uygulamamız için servis tanımı.
+# image: geminieducationapi: Oluşturulacak Docker image'ına verilecek isim.
+# build: Image'ın nasıl oluşturulacağını belirtir.
+# context: .: Dockerfile'ın bulunduğu dizini belirtir. (Solution dizini)
+# dockerfile: GeminiEducationAPI.API/Dockerfile: Kullanılacak Dockerfile'ın yolunu belirtir.
+# ports: Port yönlendirmelerini tanımlar. 8080:80 satırı, host makinedeki 8080 portunu container'daki 80 portuna yönlendirir.
+# environment: Ortam değişkenlerini tanımlar.
+# ConnectionStrings__DefaultConnection: Veritabanı bağlantı dizesini tanımlar. Burada db hostname olarak kullanılmıştır. Docker Compose, db servisine bu isimle erişim sağlar. TrustServerCertificate=True satırı ise self-signed sertifikalarda doğrulama hatası almamak için eklenmiştir.
+# depends_on: Bu servisin db servisine bağımlı olduğunu belirtir. db servisi başlamadan geminieducationapi.api servisi başlamaz.
+# db: SQL Server veritabanı için servis tanımı.
+# image: "mcr.microsoft.com/mssql/server:2022-latest": Kullanılacak SQL Server image'ını belirtir.
+# environment: Ortam değişkenlerini tanımlar.
+# SA_PASSWORD: sa kullanıcısının şifresini tanımlar. Bu şifreyi ConnectionStrings__DefaultConnection ortam değişkeninde de aynı şekilde belirttiğinizden emin olun.
+# ACCEPT_EULA: SQL Server lisans sözleşmesini kabul ettiğinizi belirtir.
+# ports: Port yönlendirmelerini tanımlar. 1433:1433 satırı, host makinedeki 1433 portunu container'daki 1433 portuna yönlendirir. Bu sayede, SQL Server Management Studio gibi araçlarla veritabanına dışarıdan bağlanabilirsiniz.

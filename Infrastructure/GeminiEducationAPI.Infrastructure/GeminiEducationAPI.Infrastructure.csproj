@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\GeminiEducationAPI.Domain\GeminiEducationAPI.Domain.csproj" />
-    <ProjectReference Include="..\..\GeminiEducationAPI.Application\GeminiEducationAPI.Application.csproj" />
+    <ProjectReference Include="..\GeminiEducationAPI.Persistence\GeminiEducationAPI.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

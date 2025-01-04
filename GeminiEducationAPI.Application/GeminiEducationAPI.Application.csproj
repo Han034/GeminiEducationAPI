@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\GeminiEducationAPI.Domain\GeminiEducationAPI.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\GeminiEducationAPI.Infrastructure\GeminiEducationAPI.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,11 @@ using GeminiEducationAPI.API.Middleware;
 using Serilog;
 using GeminiEducationAPI.API.Hubs;
 using GeminiEducationAPI.Application.Interfaces;
+using GeminiEducationAPI.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using GeminiEducationAPI.Persistence.Data;
+using GeminiEducationAPI.API.Extensions;
+using GeminiEducationAPI.Infrastructure.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -23,6 +28,11 @@ builder.Host.UseSerilog((context, loggerConfig) =>
 		.WriteTo.Console()
 		.WriteTo.Seq("http://localhost:5341"); // Seq sunucusunun adresi
 });
+
+// Authentication Services
+builder.Services.AddAuthenticationServices(builder.Configuration);
+
+builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 
 // Register the MediatR services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GeminiEducationAPI.Application.AssemblyReference).Assembly));
@@ -43,9 +53,17 @@ builder.Services.AddScoped<IProductHubContext, ProductHubContext>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Servislerin eklendiði satýrýn altýna ekleyin:
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); // Bu satýrýn mevcut olduðundan emin olun
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Identity
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+	.AddEntityFrameworkStores<ApplicationDbContext>()
+	.AddDefaultTokenProviders();
+	//builder.Services.AddIdentity<AppUser, IdentityRole>():1 Identity servislerini uygulamaya ekler.
+	//AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
+	//AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
 
 var app = builder.Build();
 
@@ -58,6 +76,13 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+}
+
+// Seed Data (Kullanýcý ve Rol Oluþturma)
+using (var scope = app.Services.CreateScope())
+{
+	var serviceProvider = scope.ServiceProvider;
+	await SeedData.InitializeAsync(serviceProvider);
 }
 
 app.UseCors(builder => builder

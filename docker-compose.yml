@@ -1,4 +1,4 @@
-version: '4.37.1'
+version: '3.4'
 
 services:
   geminieducationapi.api:
@@ -20,23 +20,3 @@ services:
     ports:
       - "1433:1433"
 
-
-#       docker-compose.yml Açýklamasý:
-
-# version: '3.4': Docker Compose dosya formatýnýn versiyonunu belirtir.
-# services: Çalýþtýrýlacak servisleri tanýmlar.
-# geminieducationapi.api: API uygulamamýz için servis tanýmý.
-# image: geminieducationapi: Oluþturulacak Docker image'ýna verilecek isim.
-# build: Image'ýn nasýl oluþturulacaðýný belirtir.
-# context: .: Dockerfile'ýn bulunduðu dizini belirtir. (Solution dizini)
-# dockerfile: GeminiEducationAPI.API/Dockerfile: Kullanýlacak Dockerfile'ýn yolunu belirtir.
-# ports: Port yönlendirmelerini tanýmlar. 8080:80 satýrý, host makinedeki 8080 portunu container'daki 80 portuna yönlendirir.
-# environment: Ortam deðiþkenlerini tanýmlar.
-# ConnectionStrings__DefaultConnection: Veritabaný baðlantý dizesini tanýmlar. Burada db hostname olarak kullanýlmýþtýr. Docker Compose, db servisine bu isimle eriþim saðlar. TrustServerCertificate=True satýrý ise self-signed sertifikalarda doðrulama hatasý almamak için eklenmiþtir.
-# depends_on: Bu servisin db servisine baðýmlý olduðunu belirtir. db servisi baþlamadan geminieducationapi.api servisi baþlamaz.
-# db: SQL Server veritabaný için servis tanýmý.
-# image: "mcr.microsoft.com/mssql/server:2022-latest": Kullanýlacak SQL Server image'ýný belirtir.
-# environment: Ortam deðiþkenlerini tanýmlar.
-# SA_PASSWORD: sa kullanýcýsýnýn þifresini tanýmlar. Bu þifreyi ConnectionStrings__DefaultConnection ortam deðiþkeninde de ayný þekilde belirttiðinizden emin olun.
-# ACCEPT_EULA: SQL Server lisans sözleþmesini kabul ettiðinizi belirtir.
-# ports: Port yönlendirmelerini tanýmlar. 1433:1433 satýrý, host makinedeki 1433 portunu container'daki 1433 portuna yönlendirir. Bu sayede, SQL Server Management Studio gibi araçlarla veritabanýna dýþarýdan baðlanabilirsiniz.
