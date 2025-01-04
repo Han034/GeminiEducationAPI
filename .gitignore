@@ -12,3 +12,5 @@ Infrastructure/GeminiEducationAPI.Persistence/obj/*
 Persistence/GeminiEducationAPI.API/bin/*
 Persistence/GeminiEducationAPI.API/obj/*
 
+Core/GeminiEducationAPI.Domain/bin/*
+Core/GeminiEducationAPI.Domain/obj/*
