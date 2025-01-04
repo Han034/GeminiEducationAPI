@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeminiEducationAPI.API", "P
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5DFEC1EF-F478-496B-8D69-3EB2F7BC6940}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{3D3361AB-A978-403C-AB9D-EEA26EBEC61F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProductPlugin", "Plugins\MyProductPlugin\MyProductPlugin.csproj", "{E49BDA63-7FCB-4935-A4ED-521153DA80C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{5DFEC1EF-F478-496B-8D69-3EB2F7BC6940}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFEC1EF-F478-496B-8D69-3EB2F7BC6940}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFEC1EF-F478-496B-8D69-3EB2F7BC6940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49BDA63-7FCB-4935-A4ED-521153DA80C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49BDA63-7FCB-4935-A4ED-521153DA80C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49BDA63-7FCB-4935-A4ED-521153DA80C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49BDA63-7FCB-4935-A4ED-521153DA80C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{285889AB-AAD2-4E33-ACF7-E002492870B4} = {34AB0063-1A73-4DD6-BF88-EE1A38BDBDF7}
 		{47670865-B63F-40B0-9FB0-2404126A1460} = {34AB0063-1A73-4DD6-BF88-EE1A38BDBDF7}
 		{CB7E1632-6A27-4DBD-BBCA-B1854DD4670E} = {2F1F5ADC-CD9B-4713-8D5B-28AC8567E450}
+		{E49BDA63-7FCB-4935-A4ED-521153DA80C5} = {3D3361AB-A978-403C-AB9D-EEA26EBEC61F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DE59667-E4B7-4495-ABBA-BE6A58F2900A}

@@ -1,0 +1,17 @@
+﻿Dinamik Bileşen Yükleme Nedir?
+
+Dinamik bileşen yükleme, bir uygulamanın, derleme zamanında (compile time) bilinmeyen veya mevcut olmayan bileşenleri çalışma zamanında yüklemesine ve kullanmasına olanak tanır. Bu, uygulamanıza yeni özellikler eklemek veya mevcut özellikleri değiştirmek için kodunuzu yeniden derlemenize ve dağıtmanıza gerek kalmadan yapabileceğiniz anlamına gelir.
+
+Dinamik Bileşen Yüklemenin Avantajları:
+
+Esneklik: Uygulamanızın davranışını çalışma zamanında değiştirebilirsiniz.
+Genişletilebilirlik: Uygulamanıza yeni özellikler eklemek için eklentiler (plugins) veya modüller oluşturabilirsiniz.
+Daha Küçük Uygulama Boyutu: Kullanılmayan bileşenleri yüklemeyerek uygulamanızın başlangıç boyutunu küçültebilirsiniz.
+Gevşek Bağlılık (Loosely Coupled): Bileşenler arasındaki bağımlılıkları azaltabilirsiniz.
+Dinamik Bileşen Yükleme Yöntemleri:
+
+.NET'te dinamik bileşen yüklemek için kullanabileceğiniz birkaç yöntem vardır:
+
+Reflection: Assembly.LoadFrom, Assembly.Load gibi metotları kullanarak assembly'leri yükleyebilir ve Activator.CreateInstance gibi metotları kullanarak tiplerin örneklerini oluşturabilirsiniz.
+System.Composition (MEF - Managed Extensibility Framework): MEF, eklenti tabanlı uygulamalar oluşturmak için kullanılan bir kütüphanedir.
+Microsoft.Extensions.DependencyInjection: .NET Core ve .NET 5+ ile birlikte gelen dependency injection kütüphanesini kullanarak, çalışma zamanında bileşenleri yükleyebilir ve enjekte edebilirsiniz.

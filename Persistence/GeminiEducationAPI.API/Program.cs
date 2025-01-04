@@ -20,6 +20,7 @@ using GeminiEducationAPI.API.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
+
 // Serilog konfigürasyonu
 builder.Host.UseSerilog((context, loggerConfig) =>
 {
@@ -75,6 +76,9 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 
 // Swagger Services
 builder.Services.AddSwaggerServices();
+
+var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+PluginLoader.LoadPlugins(builder.Services, pluginPath);
 
 var app = builder.Build();
 

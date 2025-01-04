@@ -3,8 +3,8 @@ using GeminiEducationAPI.Application.Features.Products.Commands.DeleteProduct;
 using GeminiEducationAPI.Application.Features.Products.Commands.UpdateProduct;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetAllProducts;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetProductById;
+using GeminiEducationAPI.Application.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeminiEducationAPI.API.Controllers
@@ -16,11 +16,13 @@ namespace GeminiEducationAPI.API.Controllers
 	{
 		private readonly IMediator _mediator;
 		private readonly ILogger<ProductsController> _logger;
+		private readonly IEnumerable<IProductService> _productServices;
 
-		public ProductsController(IMediator mediator, ILogger<ProductsController> logger)
+		public ProductsController(IMediator mediator, ILogger<ProductsController> logger, IEnumerable<IProductService> productServices)
 		{
 			_mediator = mediator;
 			_logger = logger;
+			_productServices = productServices;
 		}
 
 		[HttpPost]
@@ -59,12 +61,25 @@ namespace GeminiEducationAPI.API.Controllers
 		}
 
 		[HttpDelete("{id}")]
-		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> DeleteProduct(int id)
 		{
 			var command = new DeleteProductCommand { Id = id };
 			await _mediator.Send(command);
 			return Ok();
+		}
+
+		[HttpGet("GetPluginProducts")]
+		public IActionResult GetPluginProducts()
+		{
+			var allPluginProducts = _productServices.SelectMany(service => service.GetProducts()).ToList();
+			return Ok(allPluginProducts);
+		}
+
+		[HttpGet("ListPlugins")]
+		public IActionResult ListPlugins()
+		{
+			var pluginNames = _productServices.Select(service => service.GetName()).ToList();
+			return Ok(pluginNames);
 		}
 	}
 }
