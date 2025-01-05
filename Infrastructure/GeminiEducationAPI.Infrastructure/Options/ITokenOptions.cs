@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeminiEducationAPI.Domain.Options
+namespace GeminiEducationAPI.Infrastructure.Options
 {
 	public interface ITokenOptions
 	{

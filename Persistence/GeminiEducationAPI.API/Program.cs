@@ -12,7 +12,7 @@ using GeminiEducationAPI.API.Extensions;
 using GeminiEducationAPI.Infrastructure.Token;
 using FluentValidation;
 using GeminiEducationAPI.Domain.Entities.Identity;
-using Microsoft.OpenApi.Models;
+using GeminiEducationAPI.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -28,8 +28,7 @@ builder.Host.UseSerilog((context, loggerConfig) =>
 		.WriteTo.Seq("http://localhost:5341"); // Seq sunucusunun adresi
 });
 
-// Authentication Services
-builder.Services.AddAuthenticationServices(builder.Configuration);
+
 
 builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 
@@ -41,26 +40,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Gemin
 builder.Services.AddSwaggerServices(); 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-	
 
-	c.AddSecurityRequirement(new OpenApiSecurityRequirement
-	{
-		{
-			new OpenApiSecurityScheme
-			{
-				Reference = new OpenApiReference
-				{
-					Type = ReferenceType.SecurityScheme,
-					Id = "Bearer"
-				}
-			},
-			new string[] {}
-		}
-	});
-});
 //builder.Services.AddSwaggerGen(c =>
 //{
 //	c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -84,11 +64,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+
 
 // Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>()
 	.AddEntityFrameworkStores<ApplicationDbContext>()
 	.AddDefaultTokenProviders();
+
+// Authentication Services
+builder.Services.AddAuthenticationServices(builder.Configuration);
 //builder.Services.AddIdentity<AppUser, IdentityRole>():1 Identity servislerini uygulamaya ekler.
 //AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
 //AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
@@ -113,13 +98,7 @@ var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
 PluginLoader.LoadPlugins(builder.Services, pluginPath);
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.UseSwagger();
-	app.UseSwaggerUI();
-}
+app.ConfigurePipeline();
 
 // Seed Data (Kullanýcý ve Rol Oluþturma)
 using (var scope = app.Services.CreateScope())
@@ -127,22 +106,6 @@ using (var scope = app.Services.CreateScope())
 	var serviceProvider = scope.ServiceProvider;
 	await SeedData.InitializeAsync(serviceProvider);
 }
-
-app.UseHttpsRedirection();
-
-app.UseRouting(); // Önce Routing
-
-app.UseCors(builder => builder
-	.AllowAnyOrigin()
-	.AllowAnyMethod()
-	.AllowAnyHeader());
-
-app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
-
-app.UseAuthentication(); // Sonra Authentication
-app.UseAuthorization(); // Sonra Authorization
-
-app.MapControllers();
 
 app.Run();
 
