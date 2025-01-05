@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Microsoft.Extensions.Hosting;
 
 namespace GeminiEducationAPI.API.Extensions
 {

@@ -1,4 +1,4 @@
-﻿using GeminiEducationAPI.Domain.Options;
+﻿using GeminiEducationAPI.Infrastructure.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

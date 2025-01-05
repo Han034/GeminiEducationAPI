@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace GeminiEducationAPI.Infrastructure.Token
 {
-    public interface ITokenGenerator
+	public interface ITokenGenerator
 	{
-		string GenerateToken(AppUser user);
+		Task<string> GenerateToken(string email, string password);
 	}
 }

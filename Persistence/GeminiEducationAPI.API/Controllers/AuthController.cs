@@ -16,32 +16,39 @@ namespace GeminiEducationAPI.API.Controllers
 			_mediator = mediator;
 		}
 
-		[HttpPost("login")]
-		public async Task<IActionResult> Login([FromQuery] string? returnUrl, LoginUserCommand command)
+		[HttpPost("[action]")]
+		public async Task<IActionResult> Login(LoginUserCommand command)
 		{
-			if (!ModelState.IsValid)
-				return BadRequest("Invalid login request");
-
-			try
-			{
-				var token = await _mediator.Send(command);
-
-				if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-				{
-					return Redirect(returnUrl);
-				}
-
-				return Ok(new
-				{
-					Token = token,
-					Expiration = DateTime.UtcNow.AddMinutes(120)
-				});
-			}
-			catch (Exception ex)
-			{
-				return Unauthorized(new { error = ex.Message });
-			}
+			var result = await _mediator.Send(command);
+			return Ok(result);
 		}
+
+		//[HttpPost("login")]
+		//public async Task<IActionResult> Login([FromQuery] string? returnUrl, LoginUserCommand command)
+		//{
+		//	if (!ModelState.IsValid)
+		//		return BadRequest("Invalid login request");
+
+		//	try
+		//	{
+		//		var token = await _mediator.Send(command);
+
+		//		if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+		//		{
+		//			return Redirect(returnUrl);
+		//		}
+
+		//		return Ok(new
+		//		{
+		//			Token = token,
+		//			Expiration = DateTime.UtcNow.AddMinutes(120)
+		//		});
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		return Unauthorized(new { error = ex.Message });
+		//	}
+		//}
 
 		[HttpPost("[action]")]
 		public async Task<IActionResult> Register(RegisterUserCommand command)

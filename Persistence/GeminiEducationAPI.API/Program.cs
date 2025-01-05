@@ -32,8 +32,7 @@ builder.Host.UseSerilog((context, loggerConfig) =>
 		.WriteTo.Seq("http://localhost:5341"); // Seq sunucusunun adresi
 });
 
-// Authentication Services
-builder.Services.AddAuthenticationServices(builder.Configuration);
+
 
 builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 // File Service
@@ -48,26 +47,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Gemin
 builder.Services.AddSwaggerServices(); 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-	
 
-	c.AddSecurityRequirement(new OpenApiSecurityRequirement
-	{
-		{
-			new OpenApiSecurityScheme
-			{
-				Reference = new OpenApiReference
-				{
-					Type = ReferenceType.SecurityScheme,
-					Id = "Bearer"
-				}
-			},
-			new string[] {}
-		}
-	});
-});
 //builder.Services.AddSwaggerGen(c =>
 //{
 //	c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -92,6 +72,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+
 
 // Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>()
@@ -126,13 +108,7 @@ var pluginDirectory = Path.Combine(pluginPath, "Plugins");
 PluginLoader.LoadPlugins(builder.Services, pluginDirectory);
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.UseSwagger();
-	app.UseSwaggerUI();
-}
+app.ConfigurePipeline();
 
 // Seed Data (Kullanýcý ve Rol Oluþturma)
 using (var scope = app.Services.CreateScope())
