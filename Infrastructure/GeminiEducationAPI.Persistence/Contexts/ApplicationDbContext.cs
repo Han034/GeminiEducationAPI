@@ -1,11 +1,12 @@
 ﻿using GeminiEducationAPI.Domain.Entities;
+using GeminiEducationAPI.Domain.Entities.Identity;
 using GeminiEducationAPI.Persistence.Interceptors;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeminiEducationAPI.Persistence.Contexts
 {
-	public class ApplicationDbContext : IdentityDbContext<AppUser>//DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>//DbContext
 	{
 		private readonly AuditableEntityInterceptor _auditableEntityInterceptor;
 

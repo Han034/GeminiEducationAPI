@@ -24,6 +24,18 @@ namespace GeminiEducationAPI.API.Extensions
 						ValidAudience = tokenOptions.Audience,
 						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
 					};
+
+					// Geri yönlendirme sorunlarını önlemek için:
+					options.Events = new JwtBearerEvents
+					{
+						OnChallenge = context =>
+						{
+							// Redirect yerine doğrudan 401 döndür
+							context.HandleResponse();
+							context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+							return Task.CompletedTask;
+						}
+					};
 				});
 
 			services.Configure<TokenOptions>(configuration.GetSection("TokenOptions"));

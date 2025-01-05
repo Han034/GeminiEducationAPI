@@ -6,12 +6,13 @@ using GeminiEducationAPI.Persistence.Repositories;
 using GeminiEducationAPI.Application.Mappings;
 using GeminiEducationAPI.Persistence.Interceptors;
 using Serilog;
-using GeminiEducationAPI.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using GeminiEducationAPI.Persistence.Data;
 using GeminiEducationAPI.API.Extensions;
 using GeminiEducationAPI.Infrastructure.Token;
 using FluentValidation;
+using GeminiEducationAPI.Domain.Entities.Identity;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -35,9 +36,31 @@ builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 // Register the MediatR services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GeminiEducationAPI.Application.AssemblyReference).Assembly));
 
+
+// Swagger Services
+builder.Services.AddSwaggerServices(); 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+	
+
+	c.AddSecurityRequirement(new OpenApiSecurityRequirement
+	{
+		{
+			new OpenApiSecurityScheme
+			{
+				Reference = new OpenApiReference
+				{
+					Type = ReferenceType.SecurityScheme,
+					Id = "Bearer"
+				}
+			},
+			new string[] {}
+		}
+	});
+});
 //builder.Services.AddSwaggerGen(c =>
 //{
 //	c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -66,12 +89,25 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddIdentity<AppUser, IdentityRole>()
 	.AddEntityFrameworkStores<ApplicationDbContext>()
 	.AddDefaultTokenProviders();
-	//builder.Services.AddIdentity<AppUser, IdentityRole>():1 Identity servislerini uygulamaya ekler.
-	//AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
-	//AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
+//builder.Services.AddIdentity<AppUser, IdentityRole>():1 Identity servislerini uygulamaya ekler.
+//AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
+//AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
 
-// Swagger Services
-builder.Services.AddSwaggerServices();
+// Identity'nin cookie tabanlý doðrulama eklemesini devre dýþý býrakýn
+builder.Services.ConfigureApplicationCookie(options =>
+{
+	options.Events.OnRedirectToLogin = context =>
+	{
+		context.Response.StatusCode = StatusCodes.Status401Unauthorized; // Yönlendirme yerine 401 döner
+		return Task.CompletedTask;
+	};
+
+	options.Events.OnRedirectToAccessDenied = context =>
+	{
+		context.Response.StatusCode = StatusCodes.Status403Forbidden; // Yönlendirme yerine 403 döner
+		return Task.CompletedTask;
+	};
+});
 
 var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
 PluginLoader.LoadPlugins(builder.Services, pluginPath);

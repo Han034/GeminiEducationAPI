@@ -1,4 +1,4 @@
-﻿using GeminiEducationAPI.Domain.Entities;
+﻿using GeminiEducationAPI.Domain.Entities.Identity;
 using GeminiEducationAPI.Infrastructure.Token;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GeminiEducationAPI.Application.Features.Auth.Login
 {
-	public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
 	{
 		private readonly UserManager<AppUser> _userManager;
 		private readonly ITokenGenerator _tokenGenerator;

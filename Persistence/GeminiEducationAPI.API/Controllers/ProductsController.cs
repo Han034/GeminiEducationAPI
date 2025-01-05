@@ -5,6 +5,7 @@ using GeminiEducationAPI.Application.Features.Products.Quaries.GetAllProducts;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetProductById;
 using GeminiEducationAPI.Application.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeminiEducationAPI.API.Controllers
@@ -38,6 +39,7 @@ namespace GeminiEducationAPI.API.Controllers
 		}
 
 		[HttpGet]
+		[Authorize]
 		public async Task<IActionResult> GetAllProducts()
 		{
 			var query = new GetAllProductsQuery();

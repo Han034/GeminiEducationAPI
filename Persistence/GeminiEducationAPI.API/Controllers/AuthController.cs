@@ -1,10 +1,11 @@
 ﻿using GeminiEducationAPI.Application.Features.Auth.Login;
+using GeminiEducationAPI.Application.Features.Register;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeminiEducationAPI.API.Controllers
 {
-	[Route("Account")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class AuthController : ControllerBase
 	{
@@ -15,17 +16,38 @@ namespace GeminiEducationAPI.API.Controllers
 			_mediator = mediator;
 		}
 
-		[HttpPost("[action]")]
-		public async Task<IActionResult> Login([FromQuery] string? returnUrl, [FromBody] LoginUserCommand command)
+		[HttpPost("login")]
+		public async Task<IActionResult> Login([FromQuery] string? returnUrl, LoginUserCommand command)
 		{
-			var result = await _mediator.Send(command);
+			if (!ModelState.IsValid)
+				return BadRequest("Invalid login request");
 
-			if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+			try
 			{
-				return Redirect(returnUrl);
-			}
+				var token = await _mediator.Send(command);
 
-			return Ok(result);
+				if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+				{
+					return Redirect(returnUrl);
+				}
+
+				return Ok(new
+				{
+					Token = token,
+					Expiration = DateTime.UtcNow.AddMinutes(120)
+				});
+			}
+			catch (Exception ex)
+			{
+				return Unauthorized(new { error = ex.Message });
+			}
+		}
+
+		[HttpPost("[action]")]
+		public async Task<IActionResult> Register(RegisterUserCommand command)
+		{
+			await _mediator.Send(command);
+			return Ok();
 		}
 	}
 }

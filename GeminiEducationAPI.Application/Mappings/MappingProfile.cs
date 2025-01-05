@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace GeminiEducationAPI.Application.Mappings
 {
     public class MappingProfile : Profile
-	{
-		public MappingProfile()
-		{
-			CreateMap<Product, GetAllProductsDto>();
-			CreateMap<Product, GetProductByIdDto>();
+    {
+        public MappingProfile()
+        {
+            CreateMap<Product, GetAllProductsDto>();
+            CreateMap<Product, GetProductByIdDto>();
 
-		}
-	}
+        }
+    }
 }

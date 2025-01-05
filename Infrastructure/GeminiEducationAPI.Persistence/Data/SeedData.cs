@@ -1,4 +1,5 @@
 ﻿using GeminiEducationAPI.Domain.Entities;
+using GeminiEducationAPI.Domain.Entities.Identity;
 using GeminiEducationAPI.Persistence.Contexts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GeminiEducationAPI.Persistence.Data
 {
-	public static class SeedData
+    public static class SeedData
 	{
 		public static async Task InitializeAsync(IServiceProvider serviceProvider)
 		{
