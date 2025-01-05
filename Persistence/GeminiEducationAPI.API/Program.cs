@@ -9,13 +9,9 @@ using Serilog;
 using GeminiEducationAPI.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using GeminiEducationAPI.Persistence.Data;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
 using GeminiEducationAPI.API.Extensions;
 using GeminiEducationAPI.Infrastructure.Token;
 using FluentValidation;
-using GeminiEducationAPI.API.Extensions;
-
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

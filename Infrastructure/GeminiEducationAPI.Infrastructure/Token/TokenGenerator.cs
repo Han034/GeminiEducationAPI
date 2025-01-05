@@ -1,13 +1,10 @@
 ﻿using GeminiEducationAPI.Domain.Entities;
 using GeminiEducationAPI.Domain.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GeminiEducationAPI.Infrastructure.Token
 {
@@ -27,8 +24,8 @@ namespace GeminiEducationAPI.Infrastructure.Token
 				new Claim(ClaimTypes.NameIdentifier, user.Id),
 				new Claim(ClaimTypes.Name, user.UserName),
 				new Claim(ClaimTypes.Email, user.Email),
-                // Diğer claim'ler buraya eklenebilir (örneğin, roller)
-            };
+				// Diğer claim'ler buraya eklenebilir (örneğin, roller)
+			};
 
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOptions.SecurityKey));
 			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
