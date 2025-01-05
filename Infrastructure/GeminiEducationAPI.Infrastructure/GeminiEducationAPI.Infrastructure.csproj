@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\GeminiEducationAPI.Domain\GeminiEducationAPI.Domain.csproj" />
     <ProjectReference Include="..\GeminiEducationAPI.Persistence\GeminiEducationAPI.Persistence.csproj" />
   </ItemGroup>

@@ -13,6 +13,10 @@ using GeminiEducationAPI.Infrastructure.Token;
 using FluentValidation;
 using GeminiEducationAPI.Domain.Entities.Identity;
 using Microsoft.OpenApi.Models;
+using GeminiEducationAPI.API.Hubs;
+using System.Reflection;
+using GeminiEducationAPI.Application.Interfaces;
+using GeminiEducationAPI.Infrastructure.Files;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -32,6 +36,9 @@ builder.Host.UseSerilog((context, loggerConfig) =>
 builder.Services.AddAuthenticationServices(builder.Configuration);
 
 builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+// File Service
+builder.Services.AddScoped<IFileService, FileService>();
+
 
 // Register the MediatR services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GeminiEducationAPI.Application.AssemblyReference).Assembly));
@@ -76,6 +83,7 @@ builder.Services.AddValidatorsFromAssembly(typeof(AssemblyReference).Assembly); 
 
 
 builder.Services.AddScoped<AuditableEntityInterceptor>();
+builder.Services.AddSignalR(); 
 
 // Veritabaný baðlantýsý için gerekli ekleme:
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -89,6 +97,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddIdentity<AppUser, IdentityRole>()
 	.AddEntityFrameworkStores<ApplicationDbContext>()
 	.AddDefaultTokenProviders();
+
+
 //builder.Services.AddIdentity<AppUser, IdentityRole>():1 Identity servislerini uygulamaya ekler.
 //AddEntityFrameworkStores<ApplicationDbContext>(): Entity Framework Core kullanarak Identity verilerini (kullanýcýlar, roller vb.) depolamak için gerekli servisleri ekler.
 //AddDefaultTokenProviders(): Þifre sýfýrlama gibi iþlemler için token üretmek için gerekli servisleri ekler.
@@ -109,8 +119,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 	};
 });
 
-var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
-PluginLoader.LoadPlugins(builder.Services, pluginPath);
+//var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+//PluginLoader.LoadPlugins(builder.Services, pluginPath);
+var pluginPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+var pluginDirectory = Path.Combine(pluginPath, "Plugins");
+PluginLoader.LoadPlugins(builder.Services, pluginDirectory);
 
 var app = builder.Build();
 
@@ -141,7 +154,7 @@ app.UseSerilogRequestLogging(); // Request logging middleware'ini ekle
 
 app.UseAuthentication(); // Sonra Authentication
 app.UseAuthorization(); // Sonra Authorization
-
+app.MapHub<ProductHub>("/productHub");
 app.MapControllers();
 
 app.Run();
@@ -153,4 +166,8 @@ Enrich.FromLogContext(): Log mesajlarýna context bilgilerini (örneðin, request b
 WriteTo.Console(): Log mesajlarýný konsola yazar.
 WriteTo.Seq("http://localhost:5341"): Log mesajlarýný belirtilen adresteki Seq sunucusuna gönderir. Seq varsayýlan olarak 5341 portunu kullanýr.
 app.UseSerilogRequestLogging(): Her HTTP request'i için otomatik olarak log kaydý oluþturur.
+================================================================================================
+using GeminiEducationAPI.API.Hubs; ifadesi eklendi.
+builder.Services.AddSignalR(); satýrý eklendi. Bu satýr, SignalR servislerini dependency injection sistemine ekler.
+app.MapHub<ProductHub>("/productHub"); satýrý eklendi. Bu satýr, ProductHub sýnýfýný /productHub URL'si ile eþleþtirir. Ýstemciler, bu URL'yi kullanarak Hub'a baðlanabilirler.
  */

@@ -20,13 +20,6 @@ namespace MyProductPlugin
 		}
 	}
 
-	// Dependency Injection için genişletme metodu
-	public static class MyProductServiceExtensions
-	{
-		public static IServiceCollection AddMyProductService(this IServiceCollection services)
-		{
-			services.AddTransient<IProductService, MyProductService>();
-			return services;
-		}
-	}
+	
+	
 }

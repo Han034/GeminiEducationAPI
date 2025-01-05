@@ -1,4 +1,5 @@
-﻿using GeminiEducationAPI.Application.Features.Products.Commands.CreateProduct;
+﻿using GeminiEducationAPI.API.Hubs;
+using GeminiEducationAPI.Application.Features.Products.Commands.CreateProduct;
 using GeminiEducationAPI.Application.Features.Products.Commands.DeleteProduct;
 using GeminiEducationAPI.Application.Features.Products.Commands.UpdateProduct;
 using GeminiEducationAPI.Application.Features.Products.Quaries.GetAllProducts;
@@ -7,23 +8,25 @@ using GeminiEducationAPI.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace GeminiEducationAPI.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	//[Authorize]
 	public class ProductsController : ControllerBase
 	{
 		private readonly IMediator _mediator;
 		private readonly ILogger<ProductsController> _logger;
 		private readonly IEnumerable<IProductService> _productServices;
+		private readonly IHubContext<ProductHub> _hubContext;
 
-		public ProductsController(IMediator mediator, ILogger<ProductsController> logger, IEnumerable<IProductService> productServices)
+		public ProductsController(IMediator mediator, ILogger<ProductsController> logger, IEnumerable<IProductService> productServices, IHubContext<ProductHub> hubContext)
 		{
 			_mediator = mediator;
 			_logger = logger;
 			_productServices = productServices;
+			_hubContext = hubContext;
 		}
 
 		[HttpPost]
@@ -35,11 +38,12 @@ namespace GeminiEducationAPI.API.Controllers
 
 			_logger.LogInformation("Product created successfully. ProductId: {ProductId}", productId);
 
+			await _hubContext.Clients.All.SendAsync("ReceiveNewProductNotification", $"New product added with Id: {productId}");
+
 			return Ok(productId);
 		}
 
 		[HttpGet]
-		[Authorize]
 		public async Task<IActionResult> GetAllProducts()
 		{
 			var query = new GetAllProductsQuery();

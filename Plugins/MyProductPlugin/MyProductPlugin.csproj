@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\GeminiEducationAPI.Domain\GeminiEducationAPI.Domain.csproj" />
     <ProjectReference Include="..\..\GeminiEducationAPI.Application\GeminiEducationAPI.Application.csproj" />
   </ItemGroup>
 
