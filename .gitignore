@@ -16,3 +16,6 @@ Core/GeminiEducationAPI.Domain/bin/*
 Core/GeminiEducationAPI.Domain/obj/*
 
 obj/*
+
+Plugins/MyProductPlugin/bin/*
+Plugins/MyProductPlugin/obj/*
